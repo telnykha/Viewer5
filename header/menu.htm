@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>Upper frame</TITLE>
+<script language="javascript">
+ 
+function load(url) {
+    var sel = document.getElementById("Combo")
+//    alert (sel)
+    var anchor = sel.options[sel.selectedIndex].value
+    parent.report.location.href = url + anchor
+}
+ 
+function scroll(anchor) {
+    parent.report.location.hash = anchor
+}
+</script>
+</HEAD>
+<BODY>
+<br>
+<a href="javascript:load('first.htm')">Period 1</a>
+<a href="javascript:load('second.htm')">Period 2</a>
+<a href="javascript:load('third.htm')">Period 3</a>
+<br>
+<form name="FormCombo">
+<select id="Combo" size=1
+    onChange="scroll(this.options[this.selectedIndex].value)"
+    <option value="#FirstAnchor">Anchor 1</option>
+    <option value="#SecondAnchor">Anchor 2</option>
+    <option value="#ThirdAnchor">Anchor 3</option>
+    <option value="#FourthAnchor">Anchor 4</option>
+  </select>
+</form>
+ 
+<br>
+ 
+</body>
+</html>

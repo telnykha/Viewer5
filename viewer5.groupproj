@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EB8CDEA5-8EF0-4299-83F2-002B61585838}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Viewer5.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="HTMLViewer\HTMLView.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Viewer5">
+        <MSBuild Projects="Viewer5.cbproj"/>
+    </Target>
+    <Target Name="Viewer5:Clean">
+        <MSBuild Projects="Viewer5.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Viewer5:Make">
+        <MSBuild Projects="Viewer5.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="HTMLView">
+        <MSBuild Projects="HTMLViewer\HTMLView.cbproj"/>
+    </Target>
+    <Target Name="HTMLView:Clean">
+        <MSBuild Projects="HTMLViewer\HTMLView.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HTMLView:Make">
+        <MSBuild Projects="HTMLViewer\HTMLView.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Viewer5;HTMLView"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Viewer5:Clean;HTMLView:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Viewer5:Make;HTMLView:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

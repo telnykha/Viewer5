@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset = unicode">
+	<style type="text/css">
+		div.main {
+			width: 1024px;
+			height: 772px;
+			margin: auto;
+			background-color: #213852;
+			border: 4px solid #213852
+		}
+		div.menuLine {
+			width: 1024px;
+			height: 21px;
+			background-color: #d2e2ef;
+			//background: radial-gradient( circle farthest-corner at center, #d2e2ef, #d2e2ef, #d2e2ef, #213852);
+			margin: 0px;
+			padding: 0px;
+		}
+		div.menuAddLine {
+			position: relative;
+			text-align: center;
+			width: 1024px;
+			height: 21px;
+			background-color: #d2e2ef;
+			//background: radial-gradient( circle farthest-corner at center, #d2e2ef, #d2e2ef, #d2e2ef, #213852);
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		div.canvasMain {
+			position: relative;
+			text-align: center;
+			float: left;
+			width: 633px;
+			height: 731px;
+			background-color: orange;
+			border: 1px solid #a68754;
+			margin: 0px;
+		}
+		div.textMain {
+			//float: right;
+			text-align: center;
+			height: 731px;
+			background-color: yellow;
+			border: 1px solid #a68754;
+		}	
+		div.buttonMenu {
+			display:  inline-block;
+			position: relative;
+			float: left;
+			left: 1px; 
+			top: 0px;
+			height: 21px;
+			width: 68px;  
+			background-color: white;
+			border: 0px solid #a68754;
+			margin-left: 0;
+			background: url(images/menu0001.png);
+			transition: background 0.8s ease;
+		}
+		div.buttonMenu:hover {
+			background: url(images/menu0002.png);
+		}		
+		div.buttonClose {
+			display:  inline-block;
+			position: relative;
+			float: right;
+			height: 21px;
+			width: 21px;  
+			background-color: #213852;
+			border: 0px solid #213852;
+			background: url(images/close0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+		}
+		div.buttonMin {
+			display:  inline-block;
+			position: relative;
+			float: right;
+			height: 21px;
+			width: 21px;  
+			background-color: #213852;
+			border: 0px solid #213852;
+			background: url(images/minimize0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+		}
+		div.buttonMin:hover {
+			background-image: url(images/minimize0002.png);
+		}		
+		div.buttonMax {
+			display:  inline-block;
+			position: relative;
+			float: right;
+			height: 21px;
+			width: 21px;  
+			background-color: #213852;
+			border: 0px solid #213852;
+			background: url(images/maximize0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+		}
+		div.buttonMax:hover {
+			background-image: url(images/maximize0002.png);
+		}		
+		div.buttonPrintImage {
+			display:  inline-block;
+			position: relative;
+			float: right;
+			height: 21px;
+			width: 21px;  
+			background-color: #213852;
+			border: 0px solid #213852;
+			background: url(images/printimg0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+			display: none;
+		}
+		div.buttonPrintText {
+			display:  inline-block;
+			position: relative;
+			float: right;
+			height: 21px;
+			width: 21px;  
+			background-color: #213852;
+			border: 0px solid #213852;
+			background: url(images/print_text0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+			display: none;
+		}
+		div.buttonContent {
+			display:  inline-block;
+			position: relative;
+			float: left;
+			height: 23px;
+			width:  251px;  
+			background-color: #213852;
+			border: 0px solid white;
+			background: url(images/содержание_разделов0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+			display: none;
+		}	
+		div.buttonContent:hover {
+			background-image: url(images/содержание_разделов0002.png);
+		}	
+		div.buttonPresentation {
+			display:  inline-block;
+			position: relative;
+			float: left;
+			height: 23px;
+			width:  236px;  
+			background-color: #213852;
+			border: 0px solid white;
+			background: url(images/презентация0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+			display: none;
+		}	
+		div.buttonPresentation:hover {
+			background-image: url(images/презентация0002.png);
+		}
+		div.buttonHelp {
+			display:  inline-block;
+			position: relative;
+			float: left;
+			height: 23px;
+			width:  236px;  
+			background-color: #213852;
+			border: 0px solid white;
+			background: url(images/справка0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+			display: none;
+		}
+		div.buttonHelp:hover {
+			background-image: url(images/справка0002.png);
+		}
+		div.buttonAbout {
+			display:  inline-block;
+			position: relative;
+			float: left;
+			height: 23px;
+			width:  151px;  
+			background-color: #213852;
+			border: 0px solid white;
+			background: url(images/about0001.png)  0 0 no-repeat;
+			transition: background 0.8s ease;
+			display: none;
+		}
+		div.buttonAbout:hover {
+			background-image: url(images/about0002.png);
+		}	
+		div.buttonClose:hover {
+			background-image: url(images/close0002.png);
+		}	
+		div.controlArea{
+			display:  inline-block;
+			float: right;
+			height: 21px;
+			width: 63px;  
+			margin-right: 0px;
+			margin-left: auto;
+			background-color: #d2e2ef;
+			border: 0px solid #213852;	
+		}
+		div.captionArea{
+			display:  inline-block;
+			text-align: center;
+			height: 20px;
+			width: 847px;  
+			opacity: 1.0;
+			vertical-align:middle;
+			color: #213852	;
+		}
+	</style>  
+<title>---==== HTML 5 JavaScript Adobe Animation with CreateJS ====---</title>
+<script>
+	//глобальные переменные 
+	var g_show_menu = false;
+	function showMenu()
+	{
+		var caption = document.getElementById("captionID");
+		var content = document.getElementById("contentID");
+		var presentation = document.getElementById("presentationID");
+		var help = document.getElementById("helpID");
+		var about = document.getElementById("aboutID");
+		var menuAddLine = document.getElementById("content_tr");
+		
+		caption.style.display = g_show_menu?"none":"inline-block";
+		presentation.style.display = g_show_menu?"inline-block":"none";
+		help.style.display = g_show_menu?"inline-block":"none";
+		content.style.display = g_show_menu?"inline-block":"none";
+		about.style.display = g_show_menu?"inline-block":"none";
+		menuAddLine.style.display = g_show_menu?"block":"none";
+		if (g_show_menu)
+			contentClick();
+		else
+			showIntro();
+	}
+	function menuClick(oObject)
+	{
+		g_show_menu = !g_show_menu;
+		showMenu();
+	}
+	function aboutClick()
+	{
+		switchPages("about");
+	}
+	function helpClick()
+	{
+		switchPages("help");
+	}
+	function contentClick()
+	{
+		switchPages("content");		
+	}
+	function presentClick()
+	{
+		switchPages("present");
+	}
+	function hideFrames()
+	{
+		var about_frame = document.getElementById("about_frame_tr");
+		var help_frame = document.getElementById("help_frame_tr");
+		var present_frame = document.getElementById("present_frame_tr");
+		var content_frame = document.getElementById("content_frame_tr");
+		var view_frame = document.getElementById("view_frame_tr");
+
+		view_frame.style.display = 'none';
+		about_frame.style.display = 'none';
+		help_frame.style.display = 'none';
+		present_frame.style.display = 'none';	
+		content_frame.style.display = 'none';	
+	}
+	function switchPages(oObject)
+	{
+		var about_frame = document.getElementById("about_frame_tr");
+		var help_frame = document.getElementById("help_frame_tr");
+		var present_frame = document.getElementById("present_frame_tr");
+		var content_frame = document.getElementById("content_frame_tr");
+		var view_frame = document.getElementById("view_frame_tr");
+		hideFrames();
+		
+		if (oObject === "menu")
+		{
+			//view_frame.style.display = 'table-row';
+		}
+		else if (oObject === "content")
+		{
+			content_frame.style.display = 'table-row';	
+		}
+		else if (oObject === "present")
+		{
+			present_frame.style.display = 'table-row';		
+		}
+		else if (oObject === "help")
+		{
+			help_frame.style.display = 'table-row';
+		}
+		else if (oObject === "about")
+		{
+			about_frame.style.display = 'table-row';
+		}
+	}
+	
+	function showIntro()
+	{
+		hideFrames();
+		var view_frame = document.getElementById("view_frame_tr");
+		view_frame.style.display = 'table-row';
+	}
+	 //window.setInterval("reloadIFrame();", 3000);
+
+	 //function reloadIFrame() {
+	 // document.frames["view_frame"].location.reload();
+	 //}
+	function Go_window(url)
+	{
+		//console.log(view_frame.src);
+		hideFrames();
+		g_show_menu = false;
+		showMenu();
+		console.log("goto url:" + url);
+		var content_frame = document.getElementById("content_frame_tr");
+		var view_frame_tr = document.getElementById("view_frame_tr");
+		var view_frame = document.getElementById("view_frame");
+		content_frame.style.display = 'none';
+		
+		view_frame_tr.style.display = 'table-row';
+		var url1 = view_frame.src;
+		view_frame.src = 'about:blank';
+		setTimeout(function() {
+				view_frame.src = url;
+		}, 10);
+	}
+</script>
+</head>
+<body style='margin:0px;background-color: #d2e2ef;' scroll='no'>
+	<div class="main">
+		<table border='0' cellspacing='0' cellpadding='0' width='100%' height='100%' style='background-color: #d2e2ef'>
+			<tr height='24px'>
+				<td id='header'>		
+					<div id = "menuLineID" class="menuLine">
+						<div class="buttonMenu" onclick = menuClick(this);></div>
+						<div id = "contentID"   onclick = contentClick(this); class="buttonContent"></div>					
+						<div id = "presentationID" onclick = presentClick(this); class="buttonPresentation"></div>					
+						<div id = "helpID" onclick = helpClick(this); class="buttonHelp"></div>					
+						<div id = "aboutID" onclick = aboutClick(this); class="buttonAbout" ></div>					
+						<div id = "captionID" class="captionArea">---==== HTML 5 JavaScript Adobe Animation with CreateJS ====---</div>
+						<div class="controlArea">
+							<div class="buttonClose" onclick = "javascript:window.close('','_parent','');"></div>						
+							<div class="buttonMax"></div>
+							<div class="buttonMin"></div>				
+							<div class="buttonPrintImage"></div>				
+							<div class="buttonPrintText"></div>				
+						</div>					
+					</div>		
+				</td>
+			</tr>
+			<tr height='26px' id="content_tr" style="display: none">
+				<td id='content_td' style="border: none">
+					<div id = "menuAddLineID" class="menuAddLine"></div>
+				</td>
+			</tr>	
+			<tr id='content_frame_tr' style="height:100%;display: none">
+				<td id='content_frame_td' style="border: solid 3px d2e2ef; border-top:none;">
+					<iframe src= "common/frames/content.html" id='content_frame' style='width: 100%;height: 100%;background-color: #d2e2ef;	border: solid 1px #213852;'
+						allowTransparency='true' scrolling='no' APPLICATION='yes'></iframe>
+				</td>
+			</tr>
+			<tr  id='present_frame_tr' style="display: none; height:100%">
+				<td id='present_frame_td' style=" height:100% border-top:none;">
+					<iframe src= "common/frames/present.html" id="present_frame" style='width: 100%;height: 100%;background-color: #d2e2ef;	border: solid 3px #213852;'
+						allowTransparency='true' scrolling='no' APPLICATION='yes'></iframe>
+				</td>
+			</tr>
+			<tr id='help_frame_tr' style="display: none; height:100%">
+				<td id='help_frame_td' style="border: none">
+					<iframe height='100%' src= "common/frames/help.html" id="help_frame" style='width: 100%;height: 100%;background-color: #d2e2ef;'
+						allowTransparency='true' scrolling='no' APPLICATION='yes'></iframe>
+				</td>
+			</tr>
+			<tr id='about_frame_tr' style="display:none; height:100%">
+				<td id='about_frame_td' style="height:100% border-top:none;">
+					<iframe src= "about/about.html" id="about_frame" style='width: 100%;height: 100%;background-color: #d2e2ef;	border: solid 0px #213852;'
+						allowTransparency='true' scrolling='no'></iframe>
+				</td>
+			</tr>
+			<tr id='view_frame_tr' style="display: none height:100%">
+				<td id='view_frame_td' style="border: none height:100%">
+					<iframe src= "intro/intro.html" id='view_frame' style='width: 1020px;height: 100%;background-color: #d2e2ef; border: none'
+						allowTransparency='true' scrolling='no' APPLICATION='yes'></iframe>
+				</td>
+			</tr>			
+		</table>	
+	</div>
+</body>
+</html>

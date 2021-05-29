@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+<style type="text/css">
+body {
+	background-color: #d2e2ef;
+	font-family: 'Open Sans', sans-serif;
+}
+
+ul {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 32px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 6px;
+    background-color: #213852;
+    box-shadow: 0 0 10px #000000 inset;
+}
+
+#wrapper {
+    position: absolute;
+    left: 50%;
+    margin-top: 5px;
+    margin-left: -450px;
+    width: 900px;
+}
+
+li {
+    display: inline-block;
+    float: left;
+    width: 150px;
+    text-align: center;
+}
+
+li:hover > a,
+li.current > a {
+    color: yellow;
+}
+
+.current {
+    margin-top: -6px;
+    border-top: 6px solid #197DE1;
+    border-bottom: 6px solid #197DE1;
+}
+
+.current::before {
+    position: absolute;
+    display: block;
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid #197DE1;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    content: "";
+}
+
+a {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: padding-box;
+    box-sizing: border-box;
+    padding-top: 6px;
+    height: 32px;
+    //border-right: thin solid #e0e1db;
+    text-decoration: none;
+    font-size: 2.375em;
+}
+
+a,
+a:visited {
+    color: #EEE;
+}
+
+li:last-of-type > a {
+    border-right-style: none;
+}
+
+li div {
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 0.813rem;
+}
+</style>  
+<title></title>
+<script>
+		function menuClick(oObject)
+		{
+			var c = document.getElementsByClassName("current");
+			  for (var i = 0; i < c.length; i++) {
+					c[i].className = "";
+				}
+			if (oObject.className === "current")
+				oObject.className = "";
+			else
+				oObject.className = "current";
+		}
+</script>
+ </head>
+ <body>
+	<div id="wrapper">
+	  <ul>
+		<li id= "idMenu" class="current" onclick = menuClick(this); ><a href="#">
+		<div>
+		   МЕНЮ
+		</div>
+		</a></li>
+		<li id = "idContent" class="" onclick = menuClick(this);><a href="#">
+		<div>
+		   Содержание
+		</div>
+		</a></li>
+		<li id = "idPresent" class="" onclick = menuClick(this);><a href="#">
+		<div>
+		   Презентация
+		</div >
+		</a></li>
+		<li id= "idHelp" class="" onclick = menuClick(this);><a href="#">
+		<div >
+		   Справка
+		</div>
+		</a></li>
+		<li id = "idAbout" class="" onclick = menuClick(this);><a href="#">
+		<div>
+		   О программе...	
+		</div>
+		</a></li>
+		<li  id = "idExit" class="" onclick = menuClick(this);><a href="#">
+		<div>
+		   Выход
+		</div>
+		</a></li>
+	  </ul>
+	</div>
+	
+</body>
+</html>

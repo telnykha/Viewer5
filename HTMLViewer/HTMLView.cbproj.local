@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.723,C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Project2PCH1.h=D:\telny\WORK\2021\Санин\Viewer5\HTMLViewer\HtmlPCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.315,=C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.396,=C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Project2PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.495,C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.h=D:\telny\WORK\2021\Санин\Viewer5\HTMLViewer\HTMLMain.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.495,C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.dfm=D:\telny\WORK\2021\Санин\Viewer5\HTMLViewer\HTMLMain.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.391,=C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.458,=C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.495,C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Unit2.cpp=D:\telny\WORK\2021\Санин\Viewer5\HTMLViewer\HTMLMain.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.146,C:\Users\telny\OneDrive\Документы\Embarcadero\Studio\Projects\Project2.cbproj=D:\telny\WORK\2021\Санин\Viewer5\HTMLViewer\HTMLView.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

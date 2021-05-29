@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta
+      http-equiv="Content-Type"
+      content="text/html; charset=utf-8" />
+    <style type="text/css">
+      body {font-family:Tahoma,Verdana,Arial,sans-serif;font-size:14px}
+      a:link {COLOR:#990000; BACKGROUND: #ffffff; TEXT-DECORATION: none}
+      a:hover {BACKGROUND: #dddddd; TEXT-DECORATION: none}
+      a:visited {COLOR: #990000; TEXT-DECORATION: none}
+    </style>
+    <script language="JavaScript">
+    <!--
+      // Объявляем глобальные переменные
+      // Входящий документ
+      var source;
+      // Преобразование
+      var stylesheet;
+      // Результат
+      var result;
+
+      // Функция, выполняющая действия по инициализации
+      function init()
+      {
+        // Инициализируем ссылку на объект входящего документа
+        source = document.all['source'];
+        // Загружаем входящий документ
+        source.load('test.xml');
+        // Инициализируем ссылку на объект преобразования
+        stylesheet = document.all['stylesheet'];
+        // Загружаем документ преобразования
+        stylesheet.load('test.xsl');
+        // Находим элемент, в который мы будем выводить
+        // результат обработки
+        result = document.all['result'];
+      }
+
+      // Функция, выполняющая "раскрытие"
+      //определённой ветки дерева категорий.
+      function expand(id)
+      {
+        // Получаем ссылку на атрибут select
+        // объявления параметра current
+        var attSelect = stylesheet.selectSingleNode(
+          "/xsl:stylesheet/xsl:param[@name='current']/@select");
+        // Изменяем значение этого атрибута. Одинарные кавычки необходимы
+        // для того, чтобы новое значение воспринималось как литерал.
+        attSelect.nodeValue = "'" + id + "'";
+        // Выполняем преобразование
+        strResult = source.transformNode(stylesheet);
+        // Обновляем страницу
+        result.innerHTML = strResult;
+       }
+    //-->
+    </script>
+  </head>
+  <body onload="init()">
+    <!-- Объект, представляющий входящий документ -->
+    <object
+      id="source"
+      width="0"
+      height="0"
+      classid="clsid:f5078f32-c551-11d3-89b9-0000f81fe221">
+      <param name="async" value="false">
+      <param name="validateOnParse" value="false">
+    </object>
+    <!-- Объект, представляющий документ преобразования -->
+    <object
+      id="stylesheet"
+      width="0"
+      height="0"
+      classid="clsid:f5078f32-c551-11d3-89b9-0000f81fe221">
+      <param name="async" value="false">
+      <param name="validateOnParse" value="false">
+    </object>
+    <a href="javascript:expand(' ')">Каталог</a>
+    <!-- В этом элементе мы будем выводить результат -->
+    <div id="result"/>
+  </body>
+</html>
