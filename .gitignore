@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+__history/
+Win32/Debug/Book/
+Win32/Debug/
+Win32/Release/Book/*.*
+
+*.ilc
