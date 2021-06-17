@@ -27,13 +27,6 @@ class Tviewer5Form : public TForm
 __published:	// IDE-managed Components
 	TCppWebBrowser *CppWebBrowser1;
 	TIdHTTPServer *IdHTTPServer1;
-	TPanel *Panel1;
-	TSpeedButton *SpeedButton1;
-	TSpeedButton *SpeedButton2;
-	TSpeedButton *SpeedButton3;
-	TSpeedButton *SpeedButton4;
-	TSpeedButton *SpeedButton5;
-	TSpeedButton *SpeedButton6;
 	TXMLDocument *XMLDocument1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall IdHTTPServer1CommandGet(TIdContext *AContext, TIdHTTPRequestInfo *ARequestInfo,
