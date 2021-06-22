@@ -38,3 +38,4 @@ Win32/Release/Book/*.*
 *.ilc
 
 Win32/
+__recovery/

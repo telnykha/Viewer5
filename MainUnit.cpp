@@ -174,19 +174,6 @@ void __fastcall Tviewer5Form::IdHTTPServer1CommandGet(TIdContext *AContext, TIdH
 			UnicodeString html;
 			AResponseInfo->ResponseNo=404;
 		}
-	   /*	else if (name == L"present.html")
-		{
-			UnicodeString str = L"";
-			UnicodeString url = ExtractFileDir(Application->ExeName);
-			url += L"\\book\\common\\xml\\";
-			int result = GetPresentationPage(url, str);
-
-			AResponseInfo->ResponseNo=result;
-			if (result == 200)
-			{
-				AResponseInfo->ContentText=UTF8Encode(str);
-			}
-		}   */
 	   else if (name == L"text.html") {
 
 				UnicodeString html;
@@ -194,7 +181,7 @@ void __fastcall Tviewer5Form::IdHTTPServer1CommandGet(TIdContext *AContext, TIdH
 
 				if (AResponseInfo->ResponseNo == res)
 				{
-					AResponseInfo->ContentText=UTF8Encode(html);
+					AResponseInfo->ContentText=UTF8Decode(html);
 				}
 
 			 }
@@ -221,10 +208,10 @@ void __fastcall Tviewer5Form::IdHTTPServer1CommandGet(TIdContext *AContext, TIdH
 				list->LoadFromFile(str);
 				if (ext == ".js") {                                              				   AResponseInfo->ContentType ="text/javascript";
 				   AResponseInfo->CharSet = "utf-8";
-				   AResponseInfo->ContentText = UTF8Encode(list->Text);
+				   AResponseInfo->ContentText = UTF8Decode(list->Text);
 
 				}
-                else
+				else
 				AResponseInfo->ContentText=UTF8Encode(list->Text);
 				//AResponseInfo->ContentText=list->Text;
 				delete list;
@@ -255,8 +242,7 @@ void __fastcall Tviewer5Form::SpeedButton1Click(TObject *Sender)
 
 void __fastcall Tviewer5Form::SpeedButton6Click(TObject *Sender)
 {
-	UnicodeString url = L"localhost\\book\\intro\\intro.html";//ExtractFilePath(Application->ExeName);
-	//url += L"localbook\\intro\\intro.html";
+	UnicodeString url = L"localhost\\book\\intro\\intro.html";
 
 	 url = StringReplace(url,L"\\.\\",L"\\", TReplaceFlags() << rfReplaceAll << rfIgnoreCase);
 	CppWebBrowser1->Navigate(url.c_str());
