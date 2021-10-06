@@ -2,7 +2,7 @@
 
 #include <vcl.h>
 #pragma hdrstop
-
+ #include <mshtml.h>
 #include "MainUnit.h"
 #include "System.Win.Registry.hpp"
 //---------------------------------------------------------------------------
@@ -20,8 +20,8 @@ __fastcall Tviewer5Form::Tviewer5Form(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall Tviewer5Form::FormCreate(TObject *Sender)
 {
-	Width = 1052;
-	Height = 824;
+	ClientWidth = 1032;
+	ClientHeight = 780;
 	UnicodeString cHomePath = "SOFTWARE";
 	UnicodeString cFeatureBrowserEmulation =
 		"Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION\\";
@@ -206,13 +206,13 @@ void __fastcall Tviewer5Form::IdHTTPServer1CommandGet(TIdContext *AContext, TIdH
 			{
 				TStringList* list = new TStringList();
 				list->LoadFromFile(str);
-				if (ext == ".js") {                                              				   AResponseInfo->ContentType ="text/javascript";
+				if (ext == ".js" || ext == ".css") {                                              				   AResponseInfo->ContentType ="text/javascript";
 				   AResponseInfo->CharSet = "utf-8";
 				   AResponseInfo->ContentText = UTF8Decode(list->Text);
 
 				}
 				else
-				AResponseInfo->ContentText=UTF8Encode(list->Text);
+				AResponseInfo->ContentText=UTF8Decode(list->Text);
 				//AResponseInfo->ContentText=list->Text;
 				delete list;
 			}
@@ -316,10 +316,9 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += L"<title>\r";
    str += strTitle;
    str += L"</title>\r";
-   //str += L"<link type=\"text/css\" rel=\"stylesheet\" href=\"..\\..\\common\\flash_text.css\">\r";
 
    str += L"<style>html, body {\r";
-   str += L"scrollbar-base-color: #41566E;\r";
+   str += L"scrollbar-fase-color: #213852;\r";
    str += L"scrollbar-base-color : #41566E;\r";
    str += L"scrollbar-highlight-color : #41566E;\r";
    str += L"scrollbar-darkshadow-color : #41566E;\r";
@@ -327,6 +326,7 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += L"scrollbar-arrow-color : #D2E2EF;\r";
    str += L"scrollbar-3dlight-color : #41566E;\r";
    str += L"scrollbar-shadow-color : #41566E;\r";
+   str += L"scrollbar-width: 16px;\r";
    str += L"height: 100%;}\r";
 
    str += L".head1  {\r";
@@ -357,7 +357,7 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += Script;
 
    str += L"/script>\r";
-   UnicodeString div_id = L"<div id=\"filecontents\" style=\"width: 370px; height: 731px; overflow-y: auto;\">";
+   UnicodeString div_id =  L"<div id=\"filecontents0\" style=\"width: 364px; height: 734px; padding:2px;border:2px double;border-color:#213852;overflow-y: auto;\">";
 
    str += L"</head>\r";
    str += L"<body  onload=\"InitEx();\" bgcolor=\"#d2e2ef\"  scroll=\"no\">\r";
@@ -501,9 +501,41 @@ void __fastcall Tviewer5Form::FormResize(TObject *Sender)
 //---------------------------------------------------------------------------
 
 void __fastcall Tviewer5Form::CppWebBrowser1DocumentComplete(TObject *Sender, LPDISPATCH pDisp,
-          Variant *URL)
+		  Variant *URL)
 {
 //    ShowMessage("complete");
+}
+//---------------------------------------------------------------------------
+void __fastcall Tviewer5Form::CreateParams(TCreateParams &Params)
+{
+
+    TForm::CreateParams(Params);
+	//Params.Style = Params.Style ^ 0x00040000L;
+}
+
+void __fastcall Tviewer5Form::CppWebBrowser1WindowClosing(TObject *ASender, WordBool IsChildWindow,
+          WordBool &Cancel)
+{
+	Close();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall Tviewer5Form::FormAlignPosition(TWinControl *Sender, TControl *Control,
+          int &NewLeft, int &NewTop, int &NewWidth, int &NewHeight, TRect &AlignRect,
+          TAlignInfo &AlignInfo)
+{
+//
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall Tviewer5Form::CppWebBrowser1NavigateComplete2(TObject *ASender, IDispatch * const pDisp,
+          const OleVariant &URL)
+{
+IHTMLDocument2 *pHTMLDocument = NULL ;
 }
 //---------------------------------------------------------------------------
 

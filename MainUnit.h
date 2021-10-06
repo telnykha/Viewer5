@@ -21,13 +21,14 @@
 #include <Xml.XMLDoc.hpp>
 #include <Xml.xmldom.hpp>
 #include <Xml.XMLIntf.hpp>
+#include <Vcl.Graphics.hpp>
 //---------------------------------------------------------------------------
 class Tviewer5Form : public TForm
 {
 __published:	// IDE-managed Components
-	TCppWebBrowser *CppWebBrowser1;
 	TIdHTTPServer *IdHTTPServer1;
 	TXMLDocument *XMLDocument1;
+	TWebBrowser *CppWebBrowser1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall IdHTTPServer1CommandGet(TIdContext *AContext, TIdHTTPRequestInfo *ARequestInfo,
           TIdHTTPResponseInfo *AResponseInfo);
@@ -40,7 +41,20 @@ __published:	// IDE-managed Components
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall CppWebBrowser1DocumentComplete(TObject *Sender, LPDISPATCH pDisp,
           Variant *URL);
+	void __fastcall CppWebBrowser1WindowClosing(TObject *ASender, WordBool IsChildWindow,
+          WordBool &Cancel);
+	void __fastcall FormAlignPosition(TWinControl *Sender, TControl *Control, int &NewLeft,
+          int &NewTop, int &NewWidth, int &NewHeight, TRect &AlignRect, TAlignInfo &AlignInfo);
+	void __fastcall CppWebBrowser1NavigateComplete2(TObject *ASender, IDispatch * const pDisp,
+          const OleVariant &URL);
+
+
+
+
+
 private:	// User declarations
+	 void __fastcall CreateParams(TCreateParams &Params);
+
 	 TStream* m_s;
 	 int GetPresentationPage(UnicodeString& url, UnicodeString& str);
 	 int MakePresentation(UnicodeString& url, UnicodeString& str);
