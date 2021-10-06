@@ -1,11 +1,32 @@
 ﻿<!DOCTYPE HTML>
 <html>
  <head>
-<link href="micra.css" rel="stylesheet">
+<!--link href="micra.css" rel="stylesheet" -->
 <title>---==== HTML 5 JavaScript Adobe Animation with CreateJS ====---
 </title>
   <meta http-equiv="Content-Type" content="text/html; charset = utf-8">
 	<style type="text/css">
+@font-face {
+	font-family: 'Micra';
+	src: url('Micra-Bold.eot');
+	src: local('Micra Bold'), local('Micra-Bold'),
+		url('Micra-Bold.eot?#iefix') format('embedded-opentype'),
+		url('Micra-Bold.woff') format('woff'),
+		url('Micra-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Micra';
+	src: url('Micra.eot');
+	src: local('Micra'),
+		url('Micra.eot?#iefix') format('embedded-opentype'),
+		url('Micra.woff') format('woff'),
+		url('Micra.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}	
 		div.main {
 			width: 1024px;
 			height: 768px;
@@ -51,19 +72,16 @@
 			font-size: 10pt;
 			font-family: "micra";
 			font-weight: bold;
-			color: #d2e2ef;
+			color: #9BABBC;
 			background-color: #213852;
-			border: 1px solid #a68754;
+			border: 1px solid #9BABBC;
 			//background:linear-gradient(-135deg, transparent 5px, #213852 0);
 			transition: all 0.5s ease;
 		}
 		div.buttonMenu:hover {
-			color: yellow;
-			border: 1px solid yellow;
-		}
-	   div.buttonMenu:active {
-		box-shadow: inset 0 0 5px rgba(0, 0, 0, .5);
-	   }			
+			color: #FFD400;
+			border: 1px solid #FFD400;
+		}			
 		div.buttonContent {
 			display:  inline-block;
 			position: relative;
@@ -78,14 +96,14 @@
 			line-height:18px;
 			color: #d2e2ef;
 			background-color: #213852;
-			border: 1px solid #a68754;
+			border: 1px solid #9BABBC;
 			//background:linear-gradient(-135deg, transparent 5px, #213852 0);
 			transition: all 0.5s ease;
 			display: none;
 		}
 		div.buttonContent:hover {
-			color: yellow;
-			border: 1px solid yellow;
+			color: #FFD400;
+			border: 1px solid #FFD400;
 		}
 		div.buttonHelp {
 			display:  inline-block;
@@ -101,14 +119,14 @@
 			line-height:18px;
 			color: #d2e2ef;
 			background-color: #213852;
-			border: 1px solid #a68754;
+			border: 1px solid #9BABBC;
 		//	background:linear-gradient(-135deg, transparent 5px, #213852 0);
 			transition: all 0.5s ease;
 			display: none;
 		}
 		div.buttonHelp:hover {
-			color: yellow;
-			border: 1px solid yellow;
+			color: #FFD400;
+			border: 1px solid #FFD400;
 		}
 		div.buttonFull {
 			display:  inline-block;
@@ -123,13 +141,13 @@
 			font-family: "Arial Black";
 			color: #d2e2ef;
 			background-color: #213852;
-			border: 1px solid #a68754;
+			border: 1px solid #9BABBC;
 			transition: all 0.5s ease;
 			display: none;
 		}
 		div.buttonFull:hover {
-			color: yellow;
-			border: 1px solid yellow;
+			color: #FFD400;
+			border: 1px solid #FFD400;
 		}
 		div.buttonClose {
 			display:  inline-block;
@@ -144,13 +162,13 @@
 			font-family: "Arial Black";
 			color: #d2e2ef;
 			background-color: #213852;
-			border: 1px solid #a68754;
+			border: 1px solid #9BABBC;
 			transition: all 0.5s ease;
 			display: none;
 		}
 		div.buttonClose:hover {
-			color: yellow;
-			border: 1px solid yellow;
+			color: #FFD400;
+			border: 1px solid #FFD400;
 		}
 		div.captionArea{
 			display:  inline-block;
@@ -170,11 +188,11 @@
 	var g_fullscreen = false;
 	function showMenu()
 	{
-		var caption = document.getElementById("captionID");
+		//var caption = document.getElementById("captionID");
 		var content = document.getElementById("contentID");
 		var help = document.getElementById("helpID");
 
-		caption.style.display = g_show_menu?"none":"inline-block";
+		//caption.style.display = g_show_menu?"none":"inline-block";
 		help.style.display = g_show_menu?"inline-block":"none";
 		content.style.display = g_show_menu?"inline-block":"none";
 		if (g_show_menu)
@@ -281,23 +299,23 @@ function toggleFullScreen(elem) {
 						<div id="fullID" onclick=toggleFullScreen(document.body); class="buttonFull">_
 </div>
 
-						<div id="captionID" class="captionArea">Учебный Программный Компьютерный Комплекс
-</div>
+						<!-- div id="captionID" class="captionArea">Учебный Программный Компьютерный Комплекс
+</div -->
 
 					</div>
 				</td>
 			</tr>
 			<tr id="content_frame_tr" style="HEIGHT: 100%; DISPLAY: none">
-				<td id="content_frame_td" style="BORDER-TOP-STYLE: none">
-					<iframe src="common/frames/content.html" id="content_frame" style="BORDER-TOP: #213852 0px solid; HEIGHT: 100%; BORDER-RIGHT: #213852 1px solid; WIDTH: 100%; BORDER-BOTTOM: #213852 1px solid; BORDER-LEFT: #213852 1px solid; BACKGROUND-COLOR: #d2e2ef"
+				<td id="content_frame_td" style="border: none">
+					<iframe src="common/frames/content.html" id="content_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"
 						allowTransparency= scrolling="no" APPLICATION="yes"></iframe>
 				</td>
 			</tr>
 			<tr  id="present_frame_tr" style="HEIGHT: 100%; DISPLAY: none">
 				<td id="present_frame_td">
-					<iframe src="common/frames/present.html" id="present_frame" style="BORDER-TOP: #213852 3px solid; HEIGHT: 100%; BORDER-RIGHT: #213852 3px solid; WIDTH: 100%; BORDER-BOTTOM: #213852 3px solid; BORDER-LEFT: #213852 3px solid; BACKGROUND-COLOR: #d2e2ef"
+					<iframe src="common/frames/present.html" id="present_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"
 						allowTransparency= scrolling="no" APPLICATION="yes"></iframe>
-				</td>
+					</td>
 			</tr>
 			<tr id="help_frame_tr" style="HEIGHT: 100%; DISPLAY: none">
 				<td id="help_frame_td" style="BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none">

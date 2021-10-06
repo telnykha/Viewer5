@@ -208,11 +208,11 @@ void __fastcall Tviewer5Form::IdHTTPServer1CommandGet(TIdContext *AContext, TIdH
 				list->LoadFromFile(str);
 				if (ext == ".js" || ext == ".css") {                                              				   AResponseInfo->ContentType ="text/javascript";
 				   AResponseInfo->CharSet = "utf-8";
-				   AResponseInfo->ContentText = UTF8Decode(list->Text);
+				   AResponseInfo->ContentText = UTF8Encode(list->Text);
 
 				}
 				else
-				AResponseInfo->ContentText=UTF8Decode(list->Text);
+				AResponseInfo->ContentText=UTF8Encode(list->Text);
 				//AResponseInfo->ContentText=list->Text;
 				delete list;
 			}
@@ -357,20 +357,20 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += Script;
 
    str += L"/script>\r";
-   UnicodeString div_id =  L"<div id=\"filecontents0\" style=\"width: 364px; height: 734px; padding:2px;border:2px double;border-color:#213852;overflow-y: auto;\">";
+   UnicodeString div_id =  L"<div id=\"filecontents0\" style=\"width: 374px; height: 739px; padding:0px;overflow-y: auto;\">";
 
    str += L"</head>\r";
-   str += L"<body  onload=\"InitEx();\" bgcolor=\"#d2e2ef\"  scroll=\"no\">\r";
+   str += L"<body  onload=\"InitEx();\" bgcolor=\"#d2e2ef\" style=\"margin:0px;\" scroll=\"no\">\r";
    str += L"  <table> \r";
    str += L"<tr>  \r";
-   str += L"	<td width=\"673\" valign=\"top\" style=\"WIDTH: 641px\"> \r";
-   str += L"<div id=\"animation_container\" style=\"HEIGHT: 801px; WIDTH: 639px\">\r";
-   str += L"		<canvas id=\"canvas\" width=\"633\" height=\"731\" style=\"POSITION: absolute; DISPLAY: block\"></canvas>\r";
-   str += L"		<div id=\"dom_overlay_container\" style=\"OVERFLOW: hidden; HEIGHT: 737px; WIDTH: 565px; POSITION: absolute; LEFT: 54px; DISPLAY: block; TOP: 88px; pointer-events: none\"> \r";
+   str += L"	<td width=\"641\" valign=\"top\" style=\"WIDTH: 641px;  border: 1px double;border-color:#213852;\"> \r";
+   str += L"	<div id=\"animation_container\" style=\"height:739px; width: 635px;padding:0px;\">\r";
+   str += L"		<canvas id=\"canvas\" width=\"633\" height=\"731\" style=\"POSITION: absolute; left: 4px;top: 4px;DISPLAY: block\"></canvas>\r";
+   str += L"		<div id=\"dom_overlay_container\" style=\"OVERFLOW: hidden; HEIGHT: 0px; WIDTH: 0px; POSITION: absolute; DISPLAY: block; pointer-events: none\"> \r";
    str += L"		</div>\r";
    str += L"	</div>  \r";
    str += L"</td>\r";
-   str += L"<td valign=\"top\">\r";
+   str += L"<td valign=\"top\" style=\"padding:0px;border:1px double;border-color:#213852;\">\r";
    str += div_id;//L"<div id=\"filecontents\" style=\"height:\"100%\" overflow-y:scroll\">\r";
    str += L"</div>\r";
    str += L"</td>\r";

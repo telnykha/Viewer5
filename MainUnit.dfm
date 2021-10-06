@@ -4,7 +4,6 @@ object viewer5Form: Tviewer5Form
   OnAlignPosition = FormAlignPosition
   VertScrollBar.Visible = False
   BorderStyle = bsNone
-  Caption = 'HTML5 JavaScript animation.'
   ClientHeight = 768
   ClientWidth = 1024
   Color = clBtnFace
