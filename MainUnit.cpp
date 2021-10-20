@@ -3,6 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
  #include <mshtml.h>
+ #include "mshtmdid.h"
 #include "MainUnit.h"
 #include "System.Win.Registry.hpp"
 //---------------------------------------------------------------------------
@@ -16,6 +17,7 @@ __fastcall Tviewer5Form::Tviewer5Form(TComponent* Owner)
 	: TForm(Owner)
 {
 	m_s = NULL;
+	m_fullScreen = false;
 }
 //---------------------------------------------------------------------------
 void __fastcall Tviewer5Form::FormCreate(TObject *Sender)
@@ -503,39 +505,209 @@ void __fastcall Tviewer5Form::FormResize(TObject *Sender)
 void __fastcall Tviewer5Form::CppWebBrowser1DocumentComplete(TObject *Sender, LPDISPATCH pDisp,
 		  Variant *URL)
 {
-//    ShowMessage("complete");
+		UnicodeString str = URL->bstrVal;
+		if (str.Pos("index.html") == 0)
+            return;
+		ShowMessage(str);
+		IHTMLDocument2 *pHTMLDocument = NULL ;
+		if (SUCCEEDED(CppWebBrowser1->Document->QueryInterface(IID_IHTMLDocument2, (LPVOID*)&pHTMLDocument)))
+		{
+			IHTMLElementCollection* pCollection = NULL;
+			HRESULT hr = pHTMLDocument->get_all(&pCollection);
+			if (SUCCEEDED(hr)) {
+				Variant varID("fullID");
+				Variant varIdx(0);
+				IHTMLElement* pElem = NULL;
+				IDispatch* pDisp = NULL;
+				if (SUCCEEDED(pCollection->item(varID, varIdx, &pDisp)) && pDisp != NULL)
+				{
+					if (SUCCEEDED(pDisp->QueryInterface( IID_IHTMLElement, (void**)&pElem )) && pElem != NULL)
+					{
+						BSTR bsHtml;
+						pElem->get_id(&bsHtml);
+						UnicodeString s = bsHtml;
+						if (s == "fullID") {
+						   //	ShowMessage("Ёлемент найден. Id = " + s);
+						   ConnectEvents(pElem);
+						}
+						pElem->Release();
+					}
+					pDisp->Release();
+				}
+				pCollection->Release();
+			}
+
+			pHTMLDocument->Release();
+		}
 }
 //---------------------------------------------------------------------------
 void __fastcall Tviewer5Form::CreateParams(TCreateParams &Params)
 {
 
-    TForm::CreateParams(Params);
+	TForm::CreateParams(Params);
 	//Params.Style = Params.Style ^ 0x00040000L;
 }
 
-void __fastcall Tviewer5Form::CppWebBrowser1WindowClosing(TObject *ASender, WordBool IsChildWindow,
-          WordBool &Cancel)
+
+
+void __fastcall Tviewer5Form::CppWebBrowser1WindowClosing(TObject *Sender, VARIANT_BOOL IsChildWindow,
+		  VARIANT_BOOL *Cancel)
 {
 	Close();
 }
-//---------------------------------------------------------------------------
 
-void __fastcall Tviewer5Form::FormAlignPosition(TWinControl *Sender, TControl *Control,
-          int &NewLeft, int &NewTop, int &NewWidth, int &NewHeight, TRect &AlignRect,
-          TAlignInfo &AlignInfo)
+
+class CEventSink : public IDispatch
 {
-//
-}
-//---------------------------------------------------------------------------
+private:
+	  ULONG       m_cRefs;        // ref count
+	  Tviewer5Form* m_wnd;
+public:
+	 CEventSink(Tviewer5Form* wnd)
+	 {
+	   m_cRefs = 0;
+	   m_wnd = wnd;
+	 }
 
+   // *** IUnknown Methods ***
+    STDMETHOD(QueryInterface)(REFIID riid, PVOID *ppvObject);
+    STDMETHOD_(ULONG, AddRef)(void);
+    STDMETHOD_(ULONG, Release)(void);
 
+    // *** IDispatch Methods ***
+    STDMETHOD (GetIDsOfNames)(REFIID riid, OLECHAR FAR* FAR* rgszNames, unsigned int cNames, LCID lcid, DISPID FAR* rgdispid);
+    STDMETHOD (GetTypeInfo)(unsigned int itinfo, LCID lcid, ITypeInfo FAR* FAR* pptinfo);
+    STDMETHOD (GetTypeInfoCount)(unsigned int FAR * pctinfo);
+	STDMETHOD (Invoke)(DISPID dispid, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS FAR *pdispparams, VARIANT FAR *pvarResult, EXCEPINFO FAR * pexecinfo, unsigned int FAR *puArgErr);
+};
 
-
-
-void __fastcall Tviewer5Form::CppWebBrowser1NavigateComplete2(TObject *ASender, IDispatch * const pDisp,
-          const OleVariant &URL)
+STDMETHODIMP CEventSink::QueryInterface(REFIID riid, PVOID* ppvObject)
 {
-IHTMLDocument2 *pHTMLDocument = NULL ;
+    if(!ppvObject)
+        return E_POINTER;
+
+    if( IsEqualIID(riid, IID_IDispatch) )
+        *ppvObject = (IDispatch*)this;
+    else
+    if( IsEqualIID(riid, IID_IUnknown) )
+        *ppvObject = this;
+    else
+    {
+        *ppvObject = NULL;
+        return E_NOINTERFACE;
+    }
+
+    AddRef();
+    return S_OK;
 }
+
+ULONG CEventSink::AddRef(void)
+{
+    return ++m_cRefs;
+}
+//--------------------------------------------------------------------------
+
+ULONG CEventSink::Release(void)
+{
+    if(--m_cRefs)
+        return m_cRefs;
+
+    delete this;
+    return 0;
+}
+//--------------------------------------------------------------------------
+
+HRESULT CEventSink::GetIDsOfNames(REFIID riid, OLECHAR FAR* FAR* rgszNames, unsigned int cNames,
+                                  LCID lcid, DISPID FAR* rgdispid)
+{
+    *rgdispid = DISPID_UNKNOWN;
+    return DISP_E_UNKNOWNNAME;
+}
+//--------------------------------------------------------------------------
+
+HRESULT CEventSink::GetTypeInfo(unsigned int itinfo, LCID lcid, ITypeInfo FAR* FAR* pptinfo)
+{
+    return E_NOTIMPL;
+}
+//--------------------------------------------------------------------------
+
+HRESULT CEventSink::GetTypeInfoCount(unsigned int FAR* pctinfo)
+{
+    return E_NOTIMPL;
+}
+//--------------------------------------------------------------------------
+STDMETHODIMP CEventSink::Invoke(
+			DISPID dispidMember,
+			REFIID riid,
+			LCID lcid,
+			WORD wFlags,
+			DISPPARAMS* pdispparams,
+			VARIANT* pvarResult,
+			EXCEPINFO* pexcepinfo,
+			UINT* puArgErr)
+{
+	switch ( dispidMember )
+	{
+	case DISPID_HTMLELEMENTEVENTS2_ONCLICK:
+		m_wnd->FullScreen();
+		break;
+
+	default:
+		break;
+	}
+	return S_OK;
+}
+
 //---------------------------------------------------------------------------
+void __fastcall Tviewer5Form::ConnectEvents(IHTMLElement* e)
+{
+	HRESULT hr;
+	IConnectionPointContainer* pCPC = NULL;
+	IConnectionPoint* pCP = NULL;
+	DWORD dwCookie;
+	CEventSink* es = new CEventSink(this);
+		// Check that this is a connectable object.
+		hr = e->QueryInterface( IID_IConnectionPointContainer, (void**)&pCPC );
+		if ( SUCCEEDED(hr) )
+		{
+			// Find the connection point.
+			hr = pCPC->FindConnectionPoint( DIID_HTMLElementEvents2, &pCP );
+			if ( SUCCEEDED(hr) )
+			{
+				// Advise the connection point.
+				// pUnk is the IUnknown interface pointer for your event sink
+				hr = pCP->Advise( es, &dwCookie );
+				if ( SUCCEEDED(hr) )
+				{
+					// Successfully advised
+				   //	ShowMessage("Successfully advised");
+				}
+				pCP->Release();
+			}
+			pCPC->Release();
+		}
+}
+
+void __fastcall Tviewer5Form::FullScreen()
+{
+	this->m_fullScreen = !this->m_fullScreen;
+	if (m_fullScreen)
+	{
+		m_width = Width;
+		m_height = Height;
+		m_left = Left;
+		m_top = Top;
+		Left = 0;
+		Top = 0;
+		Width = Screen->Width;
+		Height = Screen->Height;
+	}
+	else
+	{
+	   Left = m_left;
+	   Top = m_top;
+	   Width = m_width;
+       Height = m_height;
+	}
+}
 

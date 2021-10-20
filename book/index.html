@@ -28,9 +28,14 @@
 	font-style: normal;
 }	
 		div.main {
-			width: 1024px;
-			height: 768px;
+			position: absolute;
 			margin: auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 1024px;
+			height: 768px;			
 			background-color: #213852;
 			border: 3px solid #213852
 		}
@@ -75,8 +80,8 @@
 			color: #9BABBC;
 			background-color: #213852;
 			border: 1px solid #9BABBC;
-			//background:linear-gradient(-135deg, transparent 5px, #213852 0);
 			transition: all 0.5s ease;
+			cursor: pointer;
 		}
 		div.buttonMenu:hover {
 			color: #FFD400;
@@ -97,8 +102,8 @@
 			color: #d2e2ef;
 			background-color: #213852;
 			border: 1px solid #9BABBC;
-			//background:linear-gradient(-135deg, transparent 5px, #213852 0);
 			transition: all 0.5s ease;
+			cursor: pointer;
 			display: none;
 		}
 		div.buttonContent:hover {
@@ -120,8 +125,8 @@
 			color: #d2e2ef;
 			background-color: #213852;
 			border: 1px solid #9BABBC;
-		//	background:linear-gradient(-135deg, transparent 5px, #213852 0);
 			transition: all 0.5s ease;
+			cursor: pointer;
 			display: none;
 		}
 		div.buttonHelp:hover {
@@ -143,6 +148,7 @@
 			background-color: #213852;
 			border: 1px solid #9BABBC;
 			transition: all 0.5s ease;
+			cursor: pointer;
 			display: none;
 		}
 		div.buttonFull:hover {
@@ -164,6 +170,7 @@
 			background-color: #213852;
 			border: 1px solid #9BABBC;
 			transition: all 0.5s ease;
+			cursor: pointer;
 			display: none;
 		}
 		div.buttonClose:hover {
@@ -279,7 +286,12 @@
 	}
 
 function toggleFullScreen(elem) {
-	//document.title = "qq";
+	var full = document.getElementById("fullID");
+	g_fullscreen = !g_fullscreen;
+	if (g_fullscreen)
+		full.textContent = "_";
+	else
+		full.textContent = "□";
 }
 </script>
 </head>
@@ -296,7 +308,7 @@ function toggleFullScreen(elem) {
 </div>
 						<div id="closeID" onclick=window.close(); class="buttonClose">X
 </div>
-						<div id="fullID" onclick=toggleFullScreen(document.body); class="buttonFull">_
+						<div id="fullID" onclick=toggleFullScreen(); class="buttonFull">□
 </div>
 
 						<!-- div id="captionID" class="captionArea">Учебный Программный Компьютерный Комплекс

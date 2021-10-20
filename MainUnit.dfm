@@ -1,7 +1,6 @@
 object viewer5Form: Tviewer5Form
   Left = 0
   Top = 0
-  OnAlignPosition = FormAlignPosition
   VertScrollBar.Visible = False
   BorderStyle = bsNone
   ClientHeight = 768
@@ -20,16 +19,20 @@ object viewer5Form: Tviewer5Form
   OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
-  object CppWebBrowser1: TWebBrowser
+  object CppWebBrowser1: TCppWebBrowser
     Left = 0
     Top = 0
     Width = 1024
     Height = 768
     Align = alClient
     TabOrder = 0
-    OnNavigateComplete2 = CppWebBrowser1NavigateComplete2
+    OnNavigateComplete2 = CppWebBrowser1DocumentComplete
+    OnDocumentComplete = CppWebBrowser1DocumentComplete
     OnWindowClosing = CppWebBrowser1WindowClosing
-    ExplicitTop = 26
+    ExplicitLeft = 456
+    ExplicitTop = 248
+    ExplicitWidth = 300
+    ExplicitHeight = 150
     ControlData = {
       4C000000D5690000604F00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
