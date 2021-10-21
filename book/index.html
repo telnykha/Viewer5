@@ -34,15 +34,15 @@
 			right: 0;
 			bottom: 0;
 			left: 0;
-			width: 1024px;
-			height: 768px;			
+			width: 1018px;
+			height: 762px;			
 			background-color: #213852;
 			border: 3px solid #213852
 		}
 		div.menuLine {
-			width: 1024px;
+			width: 1018px;
 			height: 20px;
-			background-color: #d2e2ef;
+			background-color: #213852;
 			margin: 0px;
 			padding: 0px;
 		}
@@ -64,17 +64,19 @@
 			background-color: yellow;
 			border: 1px solid #a68754;
 		}
-		div.buttonMenu {
+		div.button
+		{
 			display:  inline-block;
 			position: relative;
 			float: left;
-			left: 1px;
+			margin-left: 2px;
+			
+			left: 0px;
 			top: 0px;
-			height: 18px;
-			width: 68px;
+			height: 16px;
 			text-align:center;
-			line-height:18px;
-			font-size: 10pt;
+			line-height:16px;
+			font-size: 9pt;
 			font-family: "micra";
 			font-weight: bold;
 			color: #9BABBC;
@@ -83,65 +85,82 @@
 			transition: all 0.5s ease;
 			cursor: pointer;
 		}
-		div.buttonMenu:hover {
+		div.button:hover {
 			color: #FFD400;
 			border: 1px solid #FFD400;
 		}			
-		div.buttonContent {
+		div.abutton
+		{
 			display:  inline-block;
 			position: relative;
+			margin-left: 2px;
 			float: left;
-			height: 18px;
-			width:  283px;
-			margin-left:2px;
-			font-size: 10pt;
+			left: 0px;
+			top: 0px;
+			height: 16px;
+			text-align:center;
+			line-height:16px;
+			font-size: 9pt;
 			font-family: "micra";
 			font-weight: bold;
-			text-align:center;
-			line-height:18px;
-			color: #d2e2ef;
-			background-color: #213852;
-			border: 1px solid #9BABBC;
+			color: #213852;
+			background-color: #D2E2EF;
+			border: 1px solid #D2E2EF;
 			transition: all 0.5s ease;
 			cursor: pointer;
-			display: none;
 		}
-		div.buttonContent:hover {
-			color: #FFD400;
-			border: 1px solid #FFD400;
+		
+		div.button.menu{
+			width: 68px;
 		}
-		div.buttonHelp {
-			display:  inline-block;
-			position: relative;
-			float: left;
-			height: 18px;
+		div.button.content
+		{
 			width:  283px;
-			margin-left:2px;
-			font-size: 10pt;
-			font-family: "micra";
-			font-weight: bold;
-			text-align:center;
-			line-height:18px;
-			color: #d2e2ef;
-			background-color: #213852;
-			border: 1px solid #9BABBC;
-			transition: all 0.5s ease;
-			cursor: pointer;
-			display: none;
 		}
-		div.buttonHelp:hover {
-			color: #FFD400;
-			border: 1px solid #FFD400;
+		div.button.help{
+			width:  283px;
 		}
+		div.button.about
+		{
+			width: 210px;
+		}
+		div.button.full{
+			width: 20px;
+		}
+		div.button.close{
+			width:20px;
+		}
+		
+		div.abutton.menu{
+			width: 68px;
+		}
+		div.abutton.content
+		{
+			width:  283px;
+		}
+		div.abutton.help{
+			width:  283px;
+		}
+		div.abutton.about
+		{
+			width: 210px;
+		}
+		div.abutton.full{
+			width: 20px;
+		}
+		div.abutton.close{
+			width:20px;
+		}		
+		
 		div.buttonFull {
 			display:  inline-block;
 			position: relative;
 			float: right;
-			height: 18px;
-			width:  18px;
+			height: 16px;
+			width:  16px;
 			margin-right:2px;
 			text-align:center;
-			line-height:18px;
+			line-height:16px;
 			font-size: 10pt;
 			font-family: "Arial Black";
 			color: #d2e2ef;
@@ -159,12 +178,12 @@
 			display:  inline-block;
 			position: relative;
 			float: right;
-			height: 18px;
-			width:  18px;
+			height: 16px;
+			width:  16px;
 			font-size: 10pt;
 			margin-right:2px;
 			text-align:center;
-			line-height:18px;
+			line-height:16px;
 			font-family: "Arial Black";
 			color: #d2e2ef;
 			background-color: #213852;
@@ -195,13 +214,12 @@
 	var g_fullscreen = false;
 	function showMenu()
 	{
-		//var caption = document.getElementById("captionID");
 		var content = document.getElementById("contentID");
 		var help = document.getElementById("helpID");
-
-		//caption.style.display = g_show_menu?"none":"inline-block";
+		var about = document.getElementById("aboutID");
 		help.style.display = g_show_menu?"inline-block":"none";
 		content.style.display = g_show_menu?"inline-block":"none";
+		about.style.display = g_show_menu?"inline-block":"none";
 		if (g_show_menu)
 			contentClick();
 		else
@@ -210,6 +228,22 @@
 	function menuClick(oObject)
 	{
 		g_show_menu = !g_show_menu;
+		var menu0 = document.getElementById("menuButtonID");
+		var content = document.getElementById("contentID");
+		if (g_show_menu)
+		{
+			//menu0.style.backgroundColor ="#D2E2EF";
+			//menu0.style.borderColor = "#D2E2EF";
+			//menu0.style.color = "#213852";
+			menu0.className = "abutton menu"
+		}
+		else
+		{
+			menu0.className = "button menu";
+			//menu0.style.backgroundColor ="#213852";
+			//menu0.style.borderColor = "#9BABBC";
+			//menu0.style.color = "#9BABBC";			
+		}
 		showMenu();
 	}
 	function helpClick()
@@ -220,8 +254,13 @@
 	{
 		switchPages("content");
 	}
+	function aboutClick()
+	{
+		switchPages("about");
+	}	
 	function hideFrames()
 	{
+		var about_frame = document.getElementById("about_frame_tr");
 		var help_frame = document.getElementById("help_frame_tr");
 		var content_frame = document.getElementById("content_frame_tr");
 		var view_frame = document.getElementById("view_frame_tr");
@@ -229,9 +268,11 @@
 		view_frame.style.display = 'none';
 		help_frame.style.display = 'none';
 		content_frame.style.display = 'none';
+		about_frame.style.display = 'none';
 	}
 	function switchPages(oObject)
 	{
+		var about_frame = document.getElementById("about_frame_tr");
 		var help_frame = document.getElementById("help_frame_tr");
 		var content_frame = document.getElementById("content_frame_tr");
 		var view_frame = document.getElementById("view_frame_tr");
@@ -244,11 +285,18 @@
 		else if (oObject === "content")
 		{
 			content_frame.style.display = 'table-row';
+			setSelection(1);
 		}
 		else if (oObject === "help")
 		{
 			help_frame.style.display = 'table-row';
+			setSelection(2);
 		}
+		else if (oObject === "about")
+		{
+			about_frame.style.display = 'table-row';
+			setSelection(3);
+		}		
 	}
 
 	function showIntro()
@@ -293,6 +341,31 @@ function toggleFullScreen(elem) {
 	else
 		full.textContent = "□";
 }
+function setSelection(value)
+{
+	var content = document.getElementById("contentID");
+	var help = document.getElementById("helpID");
+	var about = document.getElementById("aboutID");
+
+	if (value === 1)
+	{
+		content.className = "abutton content";
+		help.className = "button help";
+		about.className = "button about";
+	}
+	else if (value === 2)
+	{
+		help.className = "abutton help";
+		content.className = "button content";
+		about.className = "button about";
+	}
+	else if (value == 3)
+	{
+		help.className = "button help";
+		content.className = "button content";
+		about.className = "abutton about";
+	}
+}
 </script>
 </head>
 <body style="MARGIN: 0px; BACKGROUND-COLOR: #d2e2ef" scroll="no" onload = "loadBody()">
@@ -301,44 +374,40 @@ function toggleFullScreen(elem) {
 			<tr height='20px'>
 				<td id='header'>
 					<div id = "menuLineID" class="menuLine">
-						<div class="buttonMenu" onclick = menuClick(this);> Меню</div>
-						<div id="contentID"   onclick=contentclick(this); class="buttonContent">Содержание разделов
-</div>
-						<div id="helpID" onclick=helpclick(this); class="buttonHelp">Справка по программе
-</div>
-						<div id="closeID" onclick=window.close(); class="buttonClose">X
-</div>
-						<div id="fullID" onclick=toggleFullScreen(); class="buttonFull">□
-</div>
-
-						<!-- div id="captionID" class="captionArea">Учебный Программный Компьютерный Комплекс
-</div -->
-
+						<div id="menuButtonID"  class="button menu" onclick=menuClick(this);> Меню</div>
+						<div id="contentID"   onclick=contentClick(this); class="button content">Содержание разделов</div>
+						<div id="helpID" onclick=helpClick(); class="button help">Справка по программе</div>
+						<div id = "aboutID" onclick = aboutClick(this); class="button about" >О программе...</div>
+						<div id="closeID" onclick=window.close(); class="buttonClose">X</div>
+						<div id="fullID" onclick=toggleFullScreen(); class="buttonFull">□</div>
 					</div>
 				</td>
 			</tr>
 			<tr id="content_frame_tr" style="HEIGHT: 100%; DISPLAY: none">
-				<td id="content_frame_td" style="border: none">
-					<iframe src="common/frames/content.html" id="content_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"
-						allowTransparency= scrolling="no" APPLICATION="yes"></iframe>
+				<td id="content_frame_td" style="border: 1px">
+					<iframe src="common/frames/content.html" id="content_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"></iframe>
 				</td>
 			</tr>
 			<tr  id="present_frame_tr" style="HEIGHT: 100%; DISPLAY: none">
 				<td id="present_frame_td">
-					<iframe src="common/frames/present.html" id="present_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"
-						allowTransparency= scrolling="no" APPLICATION="yes"></iframe>
+					<iframe src="common/frames/present.html" id="present_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"></iframe>
 					</td>
 			</tr>
 			<tr id="help_frame_tr" style="HEIGHT: 100%; DISPLAY: none">
-				<td id="help_frame_td" style="BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none">
-					<iframe height="100%" src="common/frames/help.html" id="help_frame" style="HEIGHT: 100%; WIDTH: 100%; BACKGROUND-COLOR: #d2e2ef"
-						allowTransparency= scrolling="no" APPLICATION="yes"></iframe>
+				<td id="help_frame_td" style="border: none">
+					<iframe height="100%" src="common/frames/help.html" id="help_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"></iframe>
 				</td>
 			</tr>
-			<tr id='view_frame_tr' style="display: none height:100%">
-				<td id='view_frame_td' style="border: none height:100%">
-					<iframe src= "intro/intro.html" id='view_frame' style='width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;'
-						allowTransparency='true' scrolling='no' APPLICATION='yes'></iframe>
+			<tr id='about_frame_tr' style="display:none; height:100%">
+				<td id='about_frame_td' style="height:100% border-top:none;">
+					<iframe src= "about/about.html" id="about_frame" style='width: 100%;height: 100%;background-color: #d2e2ef;	border: solid 0px #213852;'
+						allowTransparency='true' scrolling='no'></iframe>
+				</td>
+			</tr>
+			<tr id="view_frame_tr" style="display: none height:100%">
+				<td id="view_frame_td" style="border: none height:100%">
+					<iframe src= "intro/intro.html" id="view_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"
+						></iframe>
 				</td>
 			</tr>
 		</table>

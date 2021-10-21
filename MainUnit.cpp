@@ -22,8 +22,8 @@ __fastcall Tviewer5Form::Tviewer5Form(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall Tviewer5Form::FormCreate(TObject *Sender)
 {
-	ClientWidth = 1032;
-	ClientHeight = 780;
+	ClientWidth = 1024;
+	ClientHeight = 768;
 	UnicodeString cHomePath = "SOFTWARE";
 	UnicodeString cFeatureBrowserEmulation =
 		"Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION\\";
@@ -444,9 +444,6 @@ bool Tviewer5Form::LoadTextHtml(UnicodeString& url, UnicodeString& body)
 	}
 
 	text = text.SubString(sp+1, ep-sp-1);
-   //	ep = text.Pos(L"</body>");
-  //	text = text.SubString(0,ep);
-
 	body = text;
 
 	delete textList;
@@ -508,7 +505,6 @@ void __fastcall Tviewer5Form::CppWebBrowser1DocumentComplete(TObject *Sender, LP
 		UnicodeString str = URL->bstrVal;
 		if (str.Pos("index.html") == 0)
             return;
-		ShowMessage(str);
 		IHTMLDocument2 *pHTMLDocument = NULL ;
 		if (SUCCEEDED(CppWebBrowser1->Document->QueryInterface(IID_IHTMLDocument2, (LPVOID*)&pHTMLDocument)))
 		{
