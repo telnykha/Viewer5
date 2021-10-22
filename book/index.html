@@ -232,17 +232,11 @@
 		var content = document.getElementById("contentID");
 		if (g_show_menu)
 		{
-			//menu0.style.backgroundColor ="#D2E2EF";
-			//menu0.style.borderColor = "#D2E2EF";
-			//menu0.style.color = "#213852";
 			menu0.className = "abutton menu"
 		}
 		else
 		{
 			menu0.className = "button menu";
-			//menu0.style.backgroundColor ="#213852";
-			//menu0.style.borderColor = "#9BABBC";
-			//menu0.style.color = "#9BABBC";			
 		}
 		showMenu();
 	}
@@ -328,9 +322,16 @@
 	{
 		var close = document.getElementById("closeID");
 		var full = document.getElementById("fullID");	
+		var content = document.getElementById("contentID");
+		var help = document.getElementById("helpID");
+		var about = document.getElementById("aboutID");
 
 		full.style.display = "inline-block";
 		close.style.display = "inline-block";
+		content.style.display = "none";
+		help.style.display = "none";
+		about.style.display = "none";
+		
 	}
 
 function toggleFullScreen(elem) {
