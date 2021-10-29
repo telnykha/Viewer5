@@ -41,7 +41,7 @@
 		}
 		div.menuLine {
 			width: 1018px;
-			height: 20px;
+			height: 23px;
 			background-color: #213852;
 			margin: 0px;
 			padding: 0px;
@@ -69,13 +69,13 @@
 			display:  inline-block;
 			position: relative;
 			float: left;
-			margin-left: 2px;
+			margin-left: 3px;
 			
 			left: 0px;
 			top: 0px;
-			height: 16px;
+			height: 18px;
 			text-align:center;
-			line-height:16px;
+			line-height:18px;
 			font-size: 9pt;
 			font-family: "micra";
 			font-weight: bold;
@@ -93,11 +93,11 @@
 		{
 			display:  inline-block;
 			position: relative;
-			margin-left: 2px;
+			margin-left: 3px;
 			float: left;
 			left: 0px;
 			top: 0px;
-			height: 16px;
+			height: 18px;
 			text-align:center;
 			line-height:16px;
 			font-size: 9pt;
@@ -111,6 +111,7 @@
 		}
 		
 		div.button.menu{
+			margin-left: 0px;
 			width: 68px;
 		}
 		div.button.content
@@ -132,6 +133,7 @@
 		}
 		
 		div.abutton.menu{
+			margin-left: 0px;
 			width: 68px;
 		}
 		div.abutton.content
@@ -406,9 +408,11 @@ function setSelection(value)
 				</td>
 			</tr>
 			<tr id="view_frame_tr" style="display: none height:100%">
-				<td id="view_frame_td" style="border: none height:100%">
-					<iframe src= "intro/intro.html" id="view_frame" style="width: 100%;height: 100%;background-color: #d2e2ef; border: none;display:block;"
+				<td id="view_frame_td" style="border: none height:100%;">
+					<div style="position:absolute;width:1010px;height:731px;left:3px;top:26px;border:1px solid;border-color:#213852">
+					<iframe src= "intro/intro.html" id="view_frame" style="width: 1010px;height:731px;display:block;border:none"
 						></iframe>
+					<div>
 				</td>
 			</tr>
 		</table>

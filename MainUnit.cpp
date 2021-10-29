@@ -359,25 +359,19 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += Script;
 
    str += L"/script>\r";
-   UnicodeString div_id =  L"<div id=\"filecontents0\" style=\"width: 374px; height: 739px; padding:0px;overflow-y: auto;\">";
+   UnicodeString div_id =  L"<div id=\"filecontents0\" style=\"position:absolute; left: 638px;top:0px;width: 380px; height: 731px; border: 1px solid;border-color:#213852;padding:4px;overflow-y: auto;\">";
 
    str += L"</head>\r";
-   str += L"<body  onload=\"InitEx();\" bgcolor=\"#d2e2ef\" style=\"margin:0px;\" scroll=\"no\">\r";
-   str += L"  <table> \r";
-   str += L"<tr>  \r";
-   str += L"	<td width=\"641\" valign=\"top\" style=\"WIDTH: 641px;  border: 1px double;border-color:#213852;\"> \r";
-   str += L"	<div id=\"animation_container\" style=\"height:739px; width: 635px;padding:0px;\">\r";
-   str += L"		<canvas id=\"canvas\" width=\"633\" height=\"731\" style=\"POSITION: absolute; left: 4px;top: 4px;DISPLAY: block\"></canvas>\r";
+   str += L"<body  onload=\"InitEx();\" style=\"margin:0px;\" scroll=\"no\">\r";
+
+   str += L"	<div id=\"animation_container\" style=\"POSITION:absolute;left:0px;top:0px;height:731px;width:633px;border:1px solid;border-color:#213852;\">\r";
+   str += L"		<canvas id=\"canvas\" width=\"633\" height=\"731px\" style=\"DISPLAY: block\"></canvas>\r";
    str += L"		<div id=\"dom_overlay_container\" style=\"OVERFLOW: hidden; HEIGHT: 0px; WIDTH: 0px; POSITION: absolute; DISPLAY: block; pointer-events: none\"> \r";
    str += L"		</div>\r";
    str += L"	</div>  \r";
-   str += L"</td>\r";
-   str += L"<td valign=\"top\" style=\"padding:0px;border:1px double;border-color:#213852;\">\r";
-   str += div_id;//L"<div id=\"filecontents\" style=\"height:\"100%\" overflow-y:scroll\">\r";
+   str += div_id;
    str += L"</div>\r";
-   str += L"</td>\r";
-   str += L"</tr>\r";
-   str += L"</table>\r";
+
    str += L"</body>\r";
    str += L"</html>\r";
 	int sp = str.Pos(div_id);
