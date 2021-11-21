@@ -204,18 +204,60 @@ void __fastcall Tviewer5Form::IdHTTPServer1CommandGet(TIdContext *AContext, TIdH
 				AResponseInfo->ContentText = L"";
 
 			}
+			else if (ext == ".eot")
+			{
+				if (m_s != NULL) {
+					delete m_s;
+					m_s = NULL;
+				}
+				TStream* m_s = new TFileStream(str, fmOpenRead);
+				AResponseInfo->ContentType ="applicatioin/vnd.ms-fontobject";
+				AResponseInfo->ContentLength =m_s->Size;
+				AResponseInfo->ContentStream = m_s;
+				AResponseInfo->ContentText = L"";
+
+			}
+			else if(ext == ".ttf")
+			{
+				if (m_s != NULL) {
+					delete m_s;
+					m_s = NULL;
+				}
+				TStream* m_s = new TFileStream(str, fmOpenRead);
+				AResponseInfo->ContentType ="font/ttf";
+				AResponseInfo->ContentLength =m_s->Size;
+				AResponseInfo->ContentStream = m_s;
+				AResponseInfo->ContentText = L"";
+			}
+			else if(ext == ".woff")
+			{
+				if (m_s != NULL) {
+					delete m_s;
+					m_s = NULL;
+				}
+				TStream* m_s = new TFileStream(str, fmOpenRead);
+				AResponseInfo->ContentType ="font/woff";
+				AResponseInfo->ContentLength =m_s->Size;
+				AResponseInfo->ContentStream = m_s;
+				AResponseInfo->ContentText = L"";
+			}
 			else
 			{
 				TStringList* list = new TStringList();
 				list->LoadFromFile(str);
-				if (ext == ".js" || ext == ".css") {                                              				   AResponseInfo->ContentType ="text/javascript";
+
+				if (ext == ".js" || ext == ".css") {
+				   AResponseInfo->ContentType ="text/javascript";
 				   AResponseInfo->CharSet = "utf-8";
 				   AResponseInfo->ContentText = UTF8Encode(list->Text);
 
 				}
 				else
-				AResponseInfo->ContentText=UTF8Encode(list->Text);
-				//AResponseInfo->ContentText=list->Text;
+				{
+					AResponseInfo->CharSet = "utf-8";
+					AResponseInfo->ContentText=UTF8Encode(list->Text);
+				}
+				AResponseInfo->ResponseNo=200;
 				delete list;
 			}
 		}

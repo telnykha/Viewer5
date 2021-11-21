@@ -3,8 +3,8 @@ object viewer5Form: Tviewer5Form
   Top = 0
   VertScrollBar.Visible = False
   BorderStyle = bsNone
-  ClientHeight = 768
-  ClientWidth = 640
+  ClientHeight = 678
+  ClientWidth = 849
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object viewer5Form: Tviewer5Form
   object CppWebBrowser1: TCppWebBrowser
     Left = 0
     Top = 0
-    Width = 640
-    Height = 768
+    Width = 849
+    Height = 678
     Align = alClient
     TabOrder = 0
     OnNavigateComplete2 = CppWebBrowser1DocumentComplete
@@ -32,7 +32,7 @@ object viewer5Form: Tviewer5Form
     ExplicitWidth = 300
     ExplicitHeight = 150
     ControlData = {
-      4C00000025420000604F00000000000000000000000000000000000000000000
+      4C000000BF570000134600000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000
