@@ -99,7 +99,7 @@
 			top: 0px;
 			height: 18px;
 			text-align:center;
-			line-height:16px;
+			line-height:18px;
 			font-size: 9pt;
 			font-family: "micra";
 			font-weight: bold;
@@ -260,8 +260,10 @@
 		var help_frame = document.getElementById("help_frame_tr");
 		var content_frame = document.getElementById("content_frame_tr");
 		var view_frame = document.getElementById("view_frame_tr");
+		var view_intro = document.getElementById("view_intro_tr");
 
 		view_frame.style.display = 'none';
+		view_intro.style.display = 'none';
 		help_frame.style.display = 'none';
 		content_frame.style.display = 'none';
 		about_frame.style.display = 'none';
@@ -272,6 +274,7 @@
 		var help_frame = document.getElementById("help_frame_tr");
 		var content_frame = document.getElementById("content_frame_tr");
 		var view_frame = document.getElementById("view_frame_tr");
+		var view_intro = document.getElementById("view_intro_tr");
 		hideFrames();
 
 		if (oObject === "menu")
@@ -298,21 +301,21 @@
 	function showIntro()
 	{
 		hideFrames();
-		var view_frame = document.getElementById("view_frame_tr");
-		view_frame.style.display = 'table-row';
+		var view_intro = document.getElementById("view_intro_tr");
+		view_intro.style.display = 'table-row';
 	}
 	function Go_window(url)
 	{
 		//console.log(view_frame.src);
 		hideFrames();
 		g_show_menu = false;
-		showMenu();
+		//showMenu();
 		console.log("goto url:" + url);
 		var content_frame = document.getElementById("content_frame_tr");
 		var view_frame_tr = document.getElementById("view_frame_tr");
 		var view_frame = document.getElementById("view_frame");
 		content_frame.style.display = 'none';
-
+	
 		view_frame_tr.style.display = 'table-row';
 		var url1 = view_frame.src;
 		view_frame.src = 'about:blank';
@@ -333,7 +336,7 @@
 		content.style.display = "none";
 		help.style.display = "none";
 		about.style.display = "none";
-		
+		showIntro();
 	}
 
 function toggleFullScreen(elem) {
@@ -407,10 +410,18 @@ function setSelection(value)
 						allowTransparency='true' scrolling='no'></iframe>
 				</td>
 			</tr>
-			<tr id="view_frame_tr" style="display: none height:100%">
+			<tr id="view_frame_tr" style="display: none; height:100%">
 				<td id="view_frame_td" style="border: none height:100%;">
+					<div style="position:absolute;width:1016px;height:735px;left:3px;top:26px;border:0px solid;border-color:#213852">
+					<iframe src= "" id="view_frame" style="width: 1016px;height:735px;display:block;border:none"
+						></iframe>
+					<div>
+				</td>
+			</tr>			
+			<tr id="view_intro_tr" style="display:none; height:100%">
+				<td id="view_intro_td" style="border: none height:100%;">
 					<div style="position:absolute;width:1010px;height:731px;left:3px;top:26px;border:1px solid;border-color:#213852">
-					<iframe src= "intro/intro.html" id="view_frame" style="width: 1010px;height:731px;display:block;border:none"
+					<iframe src= "intro/intro.html" id="view_intro" style="width: 1010px;height:731px;display:block;border:none"
 						></iframe>
 					<div>
 				</td>

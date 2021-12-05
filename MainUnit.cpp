@@ -360,7 +360,7 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += L"<title>\r";
    str += strTitle;
    str += L"</title>\r";
-
+/*
    str += L"<style>html, body {\r";
    str += L"scrollbar-fase-color: #213852;\r";
    str += L"scrollbar-base-color : #41566E;\r";
@@ -373,7 +373,7 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += L"scrollbar-width: 16px;\r";
    str += L"height: 100%;}\r";
 
-   str += L".head1  {\r";
+  str += L".head1  {\r";
 	str += L"font-family : Arial;\r";
 	str += L"font-style : normal;\r";
 	str += L"color : #D2E2EF;\r";
@@ -386,8 +386,7 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
 	str += L"padding : 5;\r";
 	str += L"}\r";
 
-   str += L"</style>\r";
-
+   str += L"</style>\r";*/
 
 
    str += L"<script src = \"..\\..\\common\\createjs.min.js\" charset = \"utf-8\"></script>\r";
@@ -401,12 +400,14 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += Script;
 
    str += L"/script>\r";
-   UnicodeString div_id =  L"<div id=\"filecontents0\" style=\"position:absolute; left: 638px;top:0px;width: 380px; height: 731px; border: 1px solid;border-color:#213852;padding:4px;overflow-y: auto;\">";
+   str += L"<link type=\"text/css\" rel=\"stylesheet\" href=\"..\\..\\common\\flash_text.css\">\r";
+
+   UnicodeString div_id =  L"<div id=\"filecontents0\" style=\"position:absolute; left: 636px;top:0px;width: 374px; height: 731px; border: 1px solid;border-color:#213852;overflow-y: auto;\">";
 
    str += L"</head>\r";
    str += L"<body  onload=\"InitEx();\" style=\"margin:0px;\" scroll=\"no\">\r";
 
-   str += L"	<div id=\"animation_container\" style=\"POSITION:absolute;left:0px;top:0px;height:731px;width:633px;border:1px solid;border-color:#213852;\">\r";
+   str += L"	<div id=\"animation_container\" style=\"POSITION:absolute;left:0px;top:0px;height:733px;width:633px;border:1px solid;border-color:#213852;\">\r";
    str += L"		<canvas id=\"canvas\" width=\"633\" height=\"731px\" style=\"DISPLAY: block\"></canvas>\r";
    str += L"		<div id=\"dom_overlay_container\" style=\"OVERFLOW: hidden; HEIGHT: 0px; WIDTH: 0px; POSITION: absolute; DISPLAY: block; pointer-events: none\"> \r";
    str += L"		</div>\r";
@@ -622,7 +623,7 @@ STDMETHODIMP CEventSink::QueryInterface(REFIID riid, PVOID* ppvObject)
         *ppvObject = (IDispatch*)this;
     else
     if( IsEqualIID(riid, IID_IUnknown) )
-        *ppvObject = this;
+		*ppvObject = this;
     else
     {
         *ppvObject = NULL;
