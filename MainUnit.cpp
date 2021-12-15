@@ -246,11 +246,16 @@ void __fastcall Tviewer5Form::IdHTTPServer1CommandGet(TIdContext *AContext, TIdH
 				TStringList* list = new TStringList();
 				list->LoadFromFile(str);
 
-				if (ext == ".js" || ext == ".css") {
+				if (ext == ".js") {
 				   AResponseInfo->ContentType ="text/javascript";
 				   AResponseInfo->CharSet = "utf-8";
 				   AResponseInfo->ContentText = UTF8Encode(list->Text);
-
+				}
+				if (ext == ".css")
+				{
+				   AResponseInfo->ContentType ="text/css";
+				   AResponseInfo->CharSet = "utf-8";
+				   AResponseInfo->ContentText = UTF8Encode(list->Text);
 				}
 				else
 				{
