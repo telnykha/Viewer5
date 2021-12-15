@@ -365,34 +365,6 @@ int Tviewer5Form::MakePresentation(UnicodeString& url, UnicodeString& str)
    str += L"<title>\r";
    str += strTitle;
    str += L"</title>\r";
-/*
-   str += L"<style>html, body {\r";
-   str += L"scrollbar-fase-color: #213852;\r";
-   str += L"scrollbar-base-color : #41566E;\r";
-   str += L"scrollbar-highlight-color : #41566E;\r";
-   str += L"scrollbar-darkshadow-color : #41566E;\r";
-   str += L"scrollbar-track-color : #8EA3BE;\r";
-   str += L"scrollbar-arrow-color : #D2E2EF;\r";
-   str += L"scrollbar-3dlight-color : #41566E;\r";
-   str += L"scrollbar-shadow-color : #41566E;\r";
-   str += L"scrollbar-width: 16px;\r";
-   str += L"height: 100%;}\r";
-
-  str += L".head1  {\r";
-	str += L"font-family : Arial;\r";
-	str += L"font-style : normal;\r";
-	str += L"color : #D2E2EF;\r";
-	str += L"font-size : 16;\r";
-	str += L"background-color : #41566E;\r";
-	str += L"width : 100%;\r";
-	str += L"height : 16;\r";
-	str += L"font-weight : bold;\r";
-	str += L"margin : 0;\r";
-	str += L"padding : 5;\r";
-	str += L"}\r";
-
-   str += L"</style>\r";*/
-
 
    str += L"<script src = \"..\\..\\common\\createjs.min.js\" charset = \"utf-8\"></script>\r";
    str += L"<script src=\"";
