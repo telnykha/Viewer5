@@ -165,4 +165,9 @@ function AddTickHandler(stage)
 function InitEx()
 {
 		init();
+		if (document.getElementById("filecontents0").scrollHeight > document.getElementById("filecontents0").offsetHeight)
+			document.getElementById('Table1').style.width = '350px';
+		else
+			document.getElementById('Table1').style.width = '367px';
+			
 }
