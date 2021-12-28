@@ -166,8 +166,23 @@ function InitEx()
 {
 		init();
 		if (document.getElementById("filecontents0").scrollHeight > document.getElementById("filecontents0").offsetHeight)
-			document.getElementById('Table1').style.width = '350px';
+		{
+			var acoll = document.getElementsByClassName('head1');//.style.width = '348px';
+			for(var i=0, len=acoll.length; i<len; i++)
+				acoll[i].style["width"] = "340px";
+			acoll = document.getElementsByClassName('with_otstup');
+			for(var i=0, len=acoll.length; i<len; i++)
+				acoll[i].style["width"] = "336px";
+			
+		}
 		else
-			document.getElementById('Table1').style.width = '367px';
+		{
+			var acoll = document.getElementsByClassName('head1');//.style.width = '348px';
+			for(var i=0, len=acoll.length; i<len; i++)
+				acoll[i].style["width"] = "358px";
+			acoll = document.getElementsByClassName('with_otstup');
+			for(var i=0, len=acoll.length; i<len; i++)
+				acoll[i].style["width"] = "354px";			
+		}
 			
 }
